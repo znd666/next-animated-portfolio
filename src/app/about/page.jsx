@@ -1,11 +1,15 @@
 "use client";
 import React, { useRef } from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion, useInView, useScroll } from "framer-motion";
 import Brain from "@/components/brain";
 
 const About = () => {
-  const containerRef = useRef()
-  const {scrollYProgress} = useScroll({container:containerRef})
+  const containerRef = useRef();
+  const { scrollYProgress } = useScroll({ container: containerRef });
+
+  const skillRef = useRef();
+  const isSkillRefInView = useInView(skillRef, {once: true});
+
   return (
     <motion.div
       className="h-full"
@@ -14,7 +18,7 @@ const About = () => {
       transition={{ duration: 1 }}
     >
       {/* Container */}
-      <div className=" h-full overflow-scroll lg:flex" ref={containerRef}>
+      <div className=" h-full overflow-y-scroll overflow-x-hidden lg:flex" ref={containerRef}>
         {/* TEXT Container */}
         <div className="p-4 sm:p-8 md:p-12 lg:p-20 xl:p-32 flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 lg:pr-0 xl:w-1/2">
           {/* Biography Container */}
@@ -72,9 +76,16 @@ const About = () => {
             </motion.svg>
           </div>
           {/* skills Container */}
-          <div className="flex flex-col gap-12 justify-center">
+          <div className="flex flex-col gap-12 justify-center" ref={skillRef}>
             {/* SKILL TITLE */}
-            <h1 className="font-bold text-2xl">SKILLS</h1>
+            <motion.h1
+              initial={{ x: "-300px" }}
+              animate={isSkillRefInView ? { x: 0 } : {}}
+              transition={{ delay: 0.2 }}
+              className="font-bold text-2xl"
+            >
+              SKILLS
+            </motion.h1>
             {/* SKILL LIST */}
             <div className=" flex gap-4 flex-wrap">
               <div className=" rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
@@ -187,12 +198,18 @@ const About = () => {
               <div className=" flex justify-between h-48">
                 {/* LEFT */}
                 <div className=" w-1/3">
-                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Senior JavaScript Engineer</div>
+                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                    Senior JavaScript Engineer
+                  </div>
                   <div className="p-3 text-sm italic">
                     My current employment. Way better than the position before!
                   </div>
-                  <div className="p-3 text-red-400 text-sm font-semibold">2024 - Present</div>
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Apple</div>
+                  <div className="p-3 text-red-400 text-sm font-semibold">
+                    2024 - Present
+                  </div>
+                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                    Apple
+                  </div>
                 </div>
                 {/* CENTER */}
                 <div className=" w-1/6 flex justify-center">
@@ -203,19 +220,23 @@ const About = () => {
                   </div>
                 </div>
                 {/* RIGHT */}
-                <div className=" w-1/3 ">
-                  
-                </div>
+                <div className=" w-1/3 "></div>
               </div>
               <div className=" flex justify-between h-48 flex-row-reverse">
                 {/* LEFT */}
                 <div className=" w-1/3">
-                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Senior JavaScript Engineer</div>
+                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                    Senior JavaScript Engineer
+                  </div>
                   <div className="p-3 text-sm italic">
                     My current employment. Way better than the position before!
                   </div>
-                  <div className="p-3 text-red-400 text-sm font-semibold">2024 - Present</div>
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Apple</div>
+                  <div className="p-3 text-red-400 text-sm font-semibold">
+                    2024 - Present
+                  </div>
+                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                    Apple
+                  </div>
                 </div>
                 {/* CENTER */}
                 <div className=" w-1/6 flex justify-center">
@@ -226,19 +247,23 @@ const About = () => {
                   </div>
                 </div>
                 {/* RIGHT */}
-                <div className=" w-1/3 ">
-                  
-                </div>
+                <div className=" w-1/3 "></div>
               </div>
               <div className=" flex justify-between h-48">
                 {/* LEFT */}
                 <div className=" w-1/3">
-                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">Senior JavaScript Engineer</div>
+                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
+                    Senior JavaScript Engineer
+                  </div>
                   <div className="p-3 text-sm italic">
                     My current employment. Way better than the position before!
                   </div>
-                  <div className="p-3 text-red-400 text-sm font-semibold">2024 - Present</div>
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">Apple</div>
+                  <div className="p-3 text-red-400 text-sm font-semibold">
+                    2024 - Present
+                  </div>
+                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                    Apple
+                  </div>
                 </div>
                 {/* CENTER */}
                 <div className=" w-1/6 flex justify-center">
@@ -249,9 +274,7 @@ const About = () => {
                   </div>
                 </div>
                 {/* RIGHT */}
-                <div className=" w-1/3 ">
-                  
-                </div>
+                <div className=" w-1/3 "></div>
               </div>
             </div>
           </div>
